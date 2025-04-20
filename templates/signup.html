@@ -1,0 +1,108 @@
+{% extends "layout.html" %} {% block title %}Sign Up - Remove.bg{% endblock %}
+{% block content %}
+<section class="flex flex-col items-center justify-center py-16 px-4">
+  <h1 class="text-2xl md:text-3xl font-bold text-gray-800 mb-2 text-center">
+    Create your Kaleido Account
+  </h1>
+  <p class="text-sm text-gray-500 mb-6 text-center">
+    Already have one?
+    <a href="/login" class="text-blue-600 font-medium">Log in here</a>
+  </p>
+
+  <!-- Info Card -->
+  <div
+    class="bg-gray-100 rounded-lg text-sm text-gray-700 px-6 py-4 max-w-md mb-6 text-center"
+  >
+    <p>
+      <span class="inline-block align-middle mr-2">👤</span>
+      A Kaleido Account gives you access to remove.bg, unscreen.com, and
+      designify.com.
+    </p>
+  </div>
+
+  <!-- Signup Box -->
+  <div class="bg-white shadow-xl rounded-lg w-full max-w-md">
+    <!-- Tabs -->
+    <div class="flex border-b">
+      <a
+        href="/login"
+        class="flex-1 text-center py-3 text-gray-500 hover:text-gray-700"
+      >
+        Log in
+      </a>
+      <a
+        href="/signup"
+        class="flex-1 text-center py-3 font-medium border-b-2 border-blue-600 text-blue-600"
+      >
+        Sign up
+      </a>
+    </div>
+
+    <div class="p-6 space-y-4">
+      <!-- Social Buttons -->
+      <button
+        class="w-full border rounded-lg flex items-center justify-center gap-2 py-2 hover:bg-gray-50"
+      >
+        <img
+          src="{{ url_for('static', filename='facebook.svg') }}"
+          class="w-5 h-5"
+        />
+        <span>Continue with Facebook</span>
+      </button>
+      <button
+        class="w-full border rounded-lg flex items-center justify-center gap-2 py-2 hover:bg-gray-50"
+      >
+        <img
+          src="{{ url_for('static', filename='google.svg') }}"
+          class="w-5 h-5"
+        />
+        <span>Continue with Google</span>
+      </button>
+
+      <div class="flex items-center gap-2 text-sm text-gray-400">
+        <hr class="flex-grow border-gray-300" />
+        or
+        <hr class="flex-grow border-gray-300" />
+      </div>
+
+      <!-- Sign Up Form -->
+      <form action="/signup" method="post" class="space-y-4">
+        <input
+          type="text"
+          name="username"
+          placeholder="Username"
+          required
+          class="w-full px-4 py-2 border rounded-lg"
+        />
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          required
+          class="w-full px-4 py-2 border rounded-lg"
+        />
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          required
+          class="w-full px-4 py-2 border rounded-lg"
+        />
+        <button
+          type="submit"
+          class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
+        >
+          Sign up
+        </button>
+      </form>
+
+      <!-- Optional text -->
+      <p class="text-xs text-gray-500 text-center mt-4">
+        By signing up, you agree to our
+        <a href="#" class="underline">Terms of Service</a> and
+        <a href="#" class="underline">Privacy Policy</a>.
+      </p>
+    </div>
+  </div>
+</section>
+{% endblock %}

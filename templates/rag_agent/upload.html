@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Brainwave Assistant</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body
+    class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-100 font-sans"
+  >
+    <div class="flex flex-col items-center justify-center min-h-screen px-4">
+      <h1 class="text-2xl font-bold mb-6">
+        Upload PDF to Embed into Brainwave
+      </h1>
+      <form
+        id="upload-form"
+        class="w-full max-w-md bg-white dark:bg-gray-800 p-6 rounded-lg shadow space-y-4"
+        enctype="multipart/form-data"
+      >
+        <input
+          type="file"
+          name="file"
+          id="file-input"
+          accept="application/pdf"
+          class="w-full text-sm text-gray-600 bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded p-2"
+          required
+        />
+        <button
+          type="submit"
+          class="w-full bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded"
+        >
+          Upload
+        </button>
+        <div id="upload-status" class="text-sm mt-2"></div>
+      </form>
+
+      <a href="/" class="mt-8 text-blue-500 hover:underline"
+        >Back to Assistant</a
+      >
+    </div>
+
+    <script>
+      const form = document.getElementById("upload-form");
+      const statusDiv = document.getElementById("upload-status");
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const formData = new FormData(form);
+        statusDiv.textContent = "Uploading...";
+
+        try {
+          const res = await fetch("/upload", {
+            method: "POST",
+            body: formData,
+          });
+          const data = await res.json();
+          statusDiv.textContent = data.message || "Upload complete.";
+        } catch (err) {
+          console.error(err);
+          statusDiv.textContent = "❌ Upload failed. Please try again.";
+        }
+      });
+    </script>
+  </body>
+</html>

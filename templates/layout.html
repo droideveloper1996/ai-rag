@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Remove.bg Clone{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-white font-sans">
+    <!-- Navigation Bar -->
+    <nav class="flex items-center justify-between px-8 py-4 shadow-sm">
+      <div class="flex items-center space-x-2">
+        <img
+          src="{{ url_for('static', filename='logo.png') }}"
+          alt="Logo"
+          class="h-6"
+        />
+        <span class="text-gray-700 font-semibold text-xl">
+          remove<span class="text-gray-400">bg</span>
+        </span>
+      </div>
+      <div class="hidden md:flex space-x-6 text-gray-600 font-medium">
+        <a href="/" class="hover:text-black">Remove Background</a>
+        <a href="#" class="hover:text-black">Features</a>
+        <a href="#" class="hover:text-black">For Business</a>
+        <a href="#" class="hover:text-black">Pricing</a>
+      </div>
+      <div class="space-x-2">
+        <a href="/login" class="text-gray-700 font-medium">Log in</a>
+        <a
+          href="/signup"
+          class="bg-gray-100 text-gray-800 font-semibold px-4 py-1 rounded-lg hover:bg-gray-200"
+          >Sign up</a
+        >
+      </div>
+    </nav>
+
+    <!-- Loader -->
+    <div
+      id="loader"
+      class="hidden fixed inset-0 bg-white bg-opacity-80 flex items-center justify-center z-50"
+    >
+      <div
+        class="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500"
+      ></div>
+      <p class="ml-4 text-xl text-blue-600 font-semibold">
+        Removing background...
+      </p>
+    </div>
+
+    <!-- Main Content -->
+    <main class="min-h-[70vh]">{% block content %}{% endblock %}</main>
+
+    <!-- Footer -->
+    <footer class="text-center text-xs text-gray-400 pb-6 px-4 mt-10">
+      By uploading an image or URL you agree to our
+      <a href="#" class="underline">Terms of Service</a>. To learn more about
+      how remove.bg handles your personal data, check our
+      <a href="#" class="underline">Privacy Policy</a>.
+    </footer>
+
+    <!-- Script for showing loader on form submit -->
+    <script>
+      const form = document.querySelector(\"form\");
+      if (form) {
+        form.addEventListener(\"submit\", () => {
+          const loader = document.getElementById(\"loader\");
+          if (loader) loader.classList.remove(\"hidden\");
+        });
+      }
+    </script>
+  </body>
+</html>

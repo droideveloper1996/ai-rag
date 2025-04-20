@@ -1,0 +1,13 @@
+rembg
+Pillow
+numpy
+opencv-python
+openai>=1.0.0
+pinecone
+sentence-transformers>=2.2.2
+langchain>=0.0.350
+PyMuPDF>=1.23.3
+python-multipart
+uvicorn
+fastapi
+fastapi[all]
